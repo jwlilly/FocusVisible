@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Focus Visible</string>
+    <string name="app_description">Display a focus outline for keyboard navigation</string>
+</resources>
