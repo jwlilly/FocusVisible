@@ -25,8 +25,7 @@ class FocusVisible : AccessibilityService() {
             }
 
             AccessibilityEvent.TYPE_WINDOW_STATE_CHANGED -> {
-                //Log.d("FOCUS_VISIBLE", "onAccessibilityEvent: TYPE_WINDOWS_STATE_CHANGED")
-                var node = event.source?.let { getFocusedNode(it) };
+                val node = event.source?.let { getFocusedNode(it) };
                 val rect = Rect()
                 node?.getBoundsInScreen(rect)
                 mLayout.setOverlayRect(rect)
@@ -47,7 +46,8 @@ class FocusVisible : AccessibilityService() {
         info.notificationTimeout = 150
         info.flags = (AccessibilityServiceInfo.DEFAULT
                 or AccessibilityServiceInfo.FLAG_RETRIEVE_INTERACTIVE_WINDOWS
-                or AccessibilityServiceInfo.CAPABILITY_CAN_RETRIEVE_WINDOW_CONTENT)
+                or AccessibilityServiceInfo.CAPABILITY_CAN_RETRIEVE_WINDOW_CONTENT
+                or AccessibilityServiceInfo.FLAG_INCLUDE_NOT_IMPORTANT_VIEWS)
         info.eventTypes = (AccessibilityEvent.TYPE_VIEW_FOCUSED
                 or AccessibilityEvent.TYPE_WINDOWS_CHANGED
                 or AccessibilityEvent.TYPE_WINDOW_CONTENT_CHANGED
